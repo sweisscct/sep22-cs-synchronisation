@@ -16,19 +16,20 @@ public class ExampleSynchronise {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws InterruptedException {
-        ArrayList<AtomicThread> threadList = new ArrayList<>();
+        ArrayList<Thread> threadList = new ArrayList<>();
         Object lock = new Object();
         
-        for (int threadNum=0; threadNum<5; threadNum++) {
-            threadList.add(new AtomicThread(lock));
+        for (int threadNum=0; threadNum<2; threadNum++) {
+            threadList.add(new Comogie());
             threadList.get(threadNum).start();
         }
-            threadList.add(new AtomicThread(new Object()));
-            threadList.get(5).start();        
+//            threadList.add(new AtomicThread(new Object()));
+//            threadList.get(5).start();        
         
         for (Thread thread: threadList) {
             thread.join();
         }
+        Comogie.printData();
         System.out.println("All threads finished");
 //        GAA gaa1 = new GAA();
 //        GAA gaa2 = new GAA();
